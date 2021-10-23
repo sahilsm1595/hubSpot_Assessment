@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  font-family: "Roboto", "Montserrat", sans-serif;
+}
+
+.exercise-header {
+  padding: 1rem 0;
+  // margin: 2rem 0;
+  text-align: center;
+  color: #fff;
+  background-color: #00a4bd;
+}
+
+// .test {
+//   padding: 4px;
+//   border: solid 1px rgb(240, 140, 58);
+//   display: inline-block;
+//   background-color: rgb(240, 140, 58);
+//   position: relative;
+//   // margin-top: 50px;
+//   border-radius: 50%;
+// }
+// .test:before {
+//   content: "";
+//   width: 2px;
+//   height: 50px;
+//   background: #000;
+//   position: absolute;
+//   bottom: 100%;
+//   left: 50%;
+//   margin-left: -1px;
+// }
+
+.mainBlock {
+  width: 100%;
+  display: flex;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+
+  .quoteClass {
+    width: 40%;
+    // height: 200px;
+    background-color: whitesmoke;
+    display: flex;
+    // justify-content: center;
+    padding-left: 15px;
+    border-left: 3px solid rgb(240, 140, 58);
+    position: relative;
+
+    .quote {
+      width: 75%;
+
+      p {
+        width: 94%;
+      }
+    }
+
+    .quote span {
+      margin-top: -10px;
+      margin-bottom: -10px;
+    }
+    .btn {
+      width: 25%;
+      display: flex;
+      margin-left: 10px;
+      // justify-content: center;
+      align-items: center;
+
+      .btn-primary {
+        width: 114px;
+        height: 38px;
+        font-size: 10px;
+        font-weight: 500;
+        border-radius: 4px;
+        border: 1px solid #00a4bd;
+        background-color: #00a4bd;
+        color: white;
+        opacity: 1;
+        outline: none;
+        cursor: pointer;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        text-transform: uppercase;
+        transition: all ease 0.3s;
+        &:hover {
+          box-shadow: 0 0px 2px #666;
+          transform: translateY(2px);
+        }
+      }
+    }
+  }
+  .quoteClass:before,
+  .quoteClass:after {
+    position: absolute;
+    bottom: 0px;
+    left: -6px;
+    height: 9px;
+    width: 9px;
+    background: rgb(240, 140, 58);
+    content: "";
+    border-radius: 5px;
+  }
+
+  .quoteClass:after {
+    left: -14px;
+    content: "''";
+    top: 0;
+    font-size: 22px;
+    border-radius: 50%;
+    color: white;
+    height: 25px;
+    text-align: center;
+    line-height: 34px;
+    width: 25px;
+    // content: "\f055";
+    // font-family: FontAwesome;
+  }
+}

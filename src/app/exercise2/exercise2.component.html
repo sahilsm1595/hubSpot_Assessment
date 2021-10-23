@@ -1,0 +1,78 @@
+<!-- <p>exercise2 works!</p> -->
+
+<!-- <table>
+  <tr>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Type</th>
+  </tr>
+  <tr *ngFor="let dataitem of movieListItems">
+    <td>{{dataitem.title}}</td>
+    <td>{{dataitem.year}}</td>
+    <td>{{dataitem.type}}</td>
+
+  </tr>
+</table> -->
+
+<div class="main-container">
+
+  <div class="container">
+
+
+    <div class="filter-container">
+      <div class="dropdown-container">
+        <select class="select-dropdown">
+          <option *ngFor="let item of tempList" [value]="item.id">
+            {{item.name}}
+          </option>
+        </select>
+
+
+        <select class="select-dropdown" style="margin-left: 14px;">
+          <option *ngFor="let item of tempList" [value]="item.id">
+            <input type="checkbox" />{{item.name}}
+          </option>
+        </select>
+      </div>
+      <div class="search-container">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit">
+          S
+          <!-- <i class="fa fa-search"></i> -->
+        </button>
+      </div>
+    </div>
+
+    <div class="filter-container">
+      <div class="radio">
+        <input id="movies" type="radio" name="numbers" value="movies">
+        <label for="movies">Movies</label>
+        <input id="books" type="radio" name="numbers" value="books">
+        <label for="books">Books</label>
+      </div>
+      <div class="clear-filter">
+        Clear Filter
+      </div>
+    </div>
+
+    <div class="movie-list">
+      <div *ngFor="let dataitem of movieListItems" class="movie-content">
+        <div>
+          <img draggable="false" src={{dataitem.poster}} height="350px">
+        </div>
+        <div>
+          {{dataitem.title}}
+          <span>({{dataitem.year}})</span>
+        </div>
+        <div>
+          Genre: {{dataitem.genre}}
+        </div>
+        <!-- <div style="color: red;" *ngFor="let item of movieListItems.genre">
+          {{item}}
+        </div> -->
+        <!-- <div>{{dataitem.type}}</div> -->
+      </div>
+    </div>
+  </div>
+
+</div>
