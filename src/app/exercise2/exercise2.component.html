@@ -21,21 +21,19 @@
 
     <div class="filter-container">
       <div class="dropdown-container">
-        <select class="select-dropdown">
-          <option *ngFor="let item of tempList" [value]="item.id">
-            {{item.name}}
-          </option>
-        </select>
+        <angular2-multiselect [data]="filteredGenreArr" [(ngModel)]="selectedItems" [settings]="dropdownSettings"
+          (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)"
+          (onDeSelectAll)="onDeSelectAll($event)"></angular2-multiselect>
 
-
-        <select class="select-dropdown" style="margin-left: 14px;">
-          <option *ngFor="let item of tempList" [value]="item.id">
-            <input type="checkbox" />{{item.name}}
+        <select class="select-dropdown" (change)="selectChangeHandler($event)" style="margin-left: 14px;">
+          <option hidden [value]="" selected>Year </option>
+          <option *ngFor="let item of yearList" [value]="item">
+            {{item}}
           </option>
         </select>
       </div>
       <div class="search-container">
-        <input type="text" placeholder="Search.." name="search">
+        <input type="text" placeholder="Search.." name="search" [(ngModel)]="movieTitle" (ngModelChange)="search()">
         <button type="submit">
           S
           <!-- <i class="fa fa-search"></i> -->
@@ -45,9 +43,9 @@
 
     <div class="filter-container">
       <div class="radio">
-        <input id="movies" type="radio" name="numbers" value="movies">
+        <input id="movies" type="radio" name="numbers" value="movie" (change)="onRadioChange($event.target.value)">
         <label for="movies">Movies</label>
-        <input id="books" type="radio" name="numbers" value="books">
+        <input id="books" type="radio" name="numbers" value="book" (change)="onRadioChange($event.target.value)">
         <label for="books">Books</label>
       </div>
       <div class="clear-filter">
@@ -56,22 +54,20 @@
     </div>
 
     <div class="movie-list">
-      <div *ngFor="let dataitem of movieListItems" class="movie-content">
-        <div>
-          <img draggable="false" src={{dataitem.poster}} height="350px">
+      <ng-container *ngIf="movieListItems.length > 0">
+        <div *ngFor="let dataitem of movieListItems; let i= index" class="movie-content">
+          <div>
+            <img draggable="false" src={{dataitem.poster}} height="350px">
+          </div>
+          <div>
+            {{dataitem.title}}
+            <span>({{dataitem.year}}) {{i+1}}</span>
+          </div>
+          <div>
+            Genre: {{dataitem.genre}}
+          </div>
         </div>
-        <div>
-          {{dataitem.title}}
-          <span>({{dataitem.year}})</span>
-        </div>
-        <div>
-          Genre: {{dataitem.genre}}
-        </div>
-        <!-- <div style="color: red;" *ngFor="let item of movieListItems.genre">
-          {{item}}
-        </div> -->
-        <!-- <div>{{dataitem.type}}</div> -->
-      </div>
+      </ng-container>
     </div>
   </div>
 

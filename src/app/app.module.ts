@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { Exercise2Component } from './exercise2/exercise2.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MainService } from './Services/main.service';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { MainService } from './Services/main.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularMultiSelectModule,
+    FormsModule
   ],
   providers: [MainService],
   bootstrap: [AppComponent]
