@@ -1,3 +1,5 @@
+@import '../../assets/styles/color-variable.scss';
+
 .main-container {
   padding: 20px;
   display: flex;
@@ -5,22 +7,24 @@
   align-items: center;
 
   .container {
-    border: 1px solid #d8d8d8;
+    border: 1px solid $inputBorder;
     background-color: #fefcfe;
     // padding-left: 5%;
     // padding-right: 5%;
-    width: 70%;
+    width: 75%;
   }
 
   .filter-container {
-    width: 93%;
+    // width: 93%;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin-bottom: 10px;
-    padding: 0px 15px 0px 15px;
+    padding: 4px 15px 4px 15px;
 
     .clear-filter {
       outline: none;
+      font-size: 12px;
       cursor: pointer;
       text-decoration: underline;
       color: #3fb4e0;
@@ -29,6 +33,11 @@
 
     .dropdown-container {
       display: flex;
+      width: 50%;
+
+      // .filters {
+      //   width: 30%;
+      // }
     }
 
     .select-dropdown,
@@ -44,7 +53,7 @@
       width: 150px;
       height: 30px;
       border: none;
-      border-bottom: 2px solid #c1b3b3;
+      border-bottom: 2px solid $inputBorder;
     }
     .select-dropdown select {
       font-size: 1rem;
@@ -66,7 +75,7 @@
       box-shadow: none;
     }
     .select-dropdown:after {
-      content: "";
+      content: '';
       position: absolute;
       top: 50%;
       right: 8px;
@@ -83,12 +92,14 @@
       float: right;
     }
 
-    input[type="text"] {
+    input[type='text'] {
       padding: 6px;
       margin-top: 8px;
       font-size: 12px;
+      width: 80%;
+      outline: none;
       // border: none;
-      border: 1px solid #c1b3b3;
+      border: 1px solid $inputBorder;
       border-right: none;
       background-color: white;
       position: relative;
@@ -104,13 +115,17 @@
       background-color: white;
       // background: #ddd;
       font-size: 12px;
-      border: 1px solid #c1b3b3;
+      border: 1px solid $inputBorder;
       border-left: none;
       cursor: pointer;
     }
 
     .search-container button:hover {
       background: #ccc;
+    }
+
+    .radio {
+      font-size: 12px;
     }
   }
 
@@ -121,15 +136,18 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    // border: 1px solid #d8d8d8;
-    // background-color: #fefcfe;
-
-    // background-color: whitesmoke;
-
+    border-top: 1px solid $inputBorder;
     .movie-content {
       // width: 33%;
-      margin: 30px;
+      margin: 10px 30px 30px 30px;
+      font-size: 12px;
+      font-weight: bold;
       // padding: 5px;
+
+      .movie-title {
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
     }
   }
 }

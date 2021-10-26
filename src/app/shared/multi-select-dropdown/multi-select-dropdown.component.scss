@@ -1,0 +1,102 @@
+/***
+    css for multi select drop down
+**/
+.drop-toggle {
+  background-color: #f2efef;
+  // width: 150px;
+  // width: 100%;
+  width: 120px;
+  min-width: 80px;
+  height: 30px;
+  margin-right: 10px;
+  margin-top: 8px;
+  border: none;
+  text-align: left;
+  border-bottom: 2px solid #c1b3b3;
+  position: relative;
+  font-weight: bold;
+}
+.drop-toggle i {
+  float: right;
+}
+// .drop-show {
+//   // padding: 4px;
+//   width: 118px;
+//   // width: 222px;
+//   // width: 100%;
+//   min-width: 80px;
+//   max-height: 218px !important;
+//   overflow-y: auto;
+//   background-color: #fff;
+//   border: 1px solid #bababa;
+//   position: absolute;
+//   z-index: 100;
+//   -webkit-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+//   -moz-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+//   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+//   margin-left: 1px;
+// }
+.drop-show label {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 19px;
+  cursor: pointer;
+  padding: 5px;
+  border-bottom: 2px solid #d8d8d8;
+}
+
+.drop-show label:hover {
+  background-color: #f2efef;
+}
+.drop-show label input {
+  vertical-align: top;
+}
+.drop-show label span {
+  display: inline-block;
+  margin-left: 4px !important;
+}
+
+// ARROW CSS
+.dropdown-list {
+  max-height: 220px;
+  overflow-y: auto;
+}
+.drop-show {
+  position: absolute;
+  background: #ffffff;
+  // padding: 15px;
+  border: 1px solid #dddddd;
+  margin-top: 10px;
+
+  width: 118px;
+  // // width: 222px;
+  // // width: 100%;
+  // min-width: 80px;
+  // max-height: 218px !important;
+  // overflow-y: auto;
+  // background-color: #fff;
+  // // border: 1px solid #bababa;
+  // // position: absolute;
+  // z-index: 100;
+  // -webkit-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  // -moz-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  // box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  // // margin-left: 1px;
+}
+
+.drop-show:before,
+.drop-show:after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 19px;
+  border: 11px solid transparent;
+  border-bottom-color: #dddddd;
+}
+
+.drop-show:after {
+  left: 20px;
+  border: 10px solid transparent;
+  border-bottom-color: #ffffff;
+}
