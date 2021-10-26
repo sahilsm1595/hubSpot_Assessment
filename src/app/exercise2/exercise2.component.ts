@@ -1,24 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MainService } from '../Services/main.service';
 import { Subscription } from 'rxjs';
-
-interface IMovie {
-  title: string;
-  year: string;
-  poster: string;
-  genre: [string];
-  type: string;
-}
-
-interface IYear {
-  name: string;
-  checked: boolean;
-}
-
-interface IGenre {
-  name: string;
-  checked: boolean;
-}
+import { IMovie, IYear, IGenre } from '../shared/interfaceMovie';
 
 @Component({
   selector: 'app-exercise2',
@@ -41,6 +24,8 @@ export class Exercise2Component implements OnInit, OnDestroy {
 
   itemYears: any[];
   itemGenres: any[];
+  type: null;
+  listLength = true;
 
   constructor(private mainService: MainService) {
     this.getMovieListItems();
@@ -59,11 +44,11 @@ export class Exercise2Component implements OnInit, OnDestroy {
     this.data = [];
     this.dropdownGenre = 'genre';
     this.dropdownYear = 'year';
+    this.type = null;
     this.movieTitle = '';
     this.radioValue = '';
     this.itemYears = [];
     this.itemGenres = [];
-    // this.globalFIlters = {};
     this.filteredMovieList = this.data;
     this.yearList = [];
     this.genreArr = [];
@@ -73,7 +58,7 @@ export class Exercise2Component implements OnInit, OnDestroy {
   getMovieListItems() {
     this.movieSubscription$ = this.mainService.getMovieListItems().subscribe((res: any) => {
       this.data = res.media;
-      // **** Dropdown GENRE data ****
+      // Dropdown GENRE data
       const filterData = new Set(this.data.map((a) => a.genre).flat());
       this.genreList = [...filterData].map((e) => {
         return {
@@ -81,11 +66,11 @@ export class Exercise2Component implements OnInit, OnDestroy {
           checked: false,
         };
       });
-      // **** Dropdown YEAR data****
+      // Dropdown YEAR data
       this.yearList = this.data.map((item) => {
         return { name: item.year, checked: false };
       });
-      // removed duplicate years
+      // Removed duplicate years
       this.yearList = this.yearList.filter(
         (item, index, self) => index === self.findIndex((t) => t.name === item.name)
       );
@@ -109,6 +94,11 @@ export class Exercise2Component implements OnInit, OnDestroy {
         (this.itemGenres.length === 0 || item.genre.some((elem) => this.itemGenres.some((d) => d === elem)))
     );
     this.setData(this.filteredMovieList);
+  }
+  clearFilters(): void {
+    this.getMovieListItems();
+    this.init();
+    this.listLength = !this.listLength;
   }
   onSearch(): void {
     if (this.movieTitle) {
@@ -138,7 +128,7 @@ export class Exercise2Component implements OnInit, OnDestroy {
     this.applyFilters();
   }
   filterByGenreIndividual(item: {}) {
-    console.log(item);
+    // Returns object of Selected Individual Items
   }
 
   // Dropdown Checked YEAR list
@@ -147,7 +137,9 @@ export class Exercise2Component implements OnInit, OnDestroy {
     this.applyFilters();
   }
 
-  filterByYearIndividual(item: {}) {}
+  filterByYearIndividual(item: {}) {
+    // Returns object of Selected Individual Items
+  }
 
   setData(data): void {
     this.mainService.setMovieList(data);
