@@ -1,74 +1,59 @@
-<!-- <p>exercise2 works!</p> -->
-
-<!-- <table>
-  <tr>
-    <th>Title</th>
-    <th>Year</th>
-    <th>Type</th>
-  </tr>
-  <tr *ngFor="let dataitem of movieListItems">
-    <td>{{dataitem.title}}</td>
-    <td>{{dataitem.year}}</td>
-    <td>{{dataitem.type}}</td>
-
-  </tr>
-</table> -->
-
 <div class="main-container">
-
   <div class="container">
-
-
     <div class="filter-container">
       <div class="dropdown-container">
-        <angular2-multiselect [data]="filteredGenreArr" [(ngModel)]="selectedItems" [settings]="dropdownSettings"
-          (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)"
-          (onDeSelectAll)="onDeSelectAll($event)"></angular2-multiselect>
+        <div class="filters">
+          <app-multi-select-dropdown
+            [list]="genreList"
+            [dropdownName]="dropdownGenre"
+            (shareCheckedList)="filterByGenre($event)"
+            (shareIndividualCheckedList)="filterByGenreIndividual($event)"
+          >
+          </app-multi-select-dropdown>
+        </div>
 
-        <select class="select-dropdown" (change)="selectChangeHandler($event)" style="margin-left: 14px;">
-          <option hidden [value]="" selected>Year </option>
-          <option *ngFor="let item of yearList" [value]="item">
-            {{item}}
-          </option>
-        </select>
+        <div class="filters" style="margin-left: 8px">
+          <app-multi-select-dropdown
+            [list]="yearList"
+            [dropdownName]="dropdownYear"
+            (shareCheckedList)="filterByYear($event)"
+            (shareIndividualCheckedList)="filterByYearIndividual($event)"
+          >
+          </app-multi-select-dropdown>
+        </div>
       </div>
       <div class="search-container">
-        <input type="text" placeholder="Search.." name="search" [(ngModel)]="movieTitle" (ngModelChange)="search()">
+        <input type="text" placeholder="Search.." name="search" [(ngModel)]="movieTitle" (ngModelChange)="onSearch()" />
         <button type="submit">
           S
-          <!-- <i class="fa fa-search"></i> -->
+          <i class="fa fa-search"></i>
         </button>
       </div>
     </div>
 
-    <div class="filter-container">
+    <div class="filter-container radio">
       <div class="radio">
-        <input id="movies" type="radio" name="numbers" value="movie" (change)="onRadioChange($event.target.value)">
+        <input id="movies" type="radio" name="numbers" value="movie" (change)="onTypeChange($event.target.value)" />
         <label for="movies">Movies</label>
-        <input id="books" type="radio" name="numbers" value="book" (change)="onRadioChange($event.target.value)">
+        <input id="books" type="radio" name="numbers" value="book" (change)="onTypeChange($event.target.value)" />
         <label for="books">Books</label>
       </div>
-      <div class="clear-filter">
-        Clear Filter
-      </div>
+      <div class="clear-filter">Clear Filter</div>
     </div>
 
     <div class="movie-list">
-      <ng-container *ngIf="movieListItems.length > 0">
-        <div *ngFor="let dataitem of movieListItems; let i= index" class="movie-content">
+      <ng-container *ngIf="filteredMovieList.length > 0">
+        <div *ngFor="let dataitem of filteredMovieList" class="movie-content">
           <div>
-            <img draggable="false" src={{dataitem.poster}} height="350px">
+            <img draggable="false" src="{{ dataitem.poster }}" height="350px" />
           </div>
-          <div>
-            {{dataitem.title}}
-            <span>({{dataitem.year}}) {{i+1}}</span>
+          <div class="movie-title">
+            {{ dataitem.title }}
+            <span>({{ dataitem.year }})</span>
           </div>
-          <div>
-            Genre: {{dataitem.genre}}
-          </div>
+          <div>Genre: {{ dataitem.genre }}</div>
         </div>
       </ng-container>
     </div>
   </div>
-
 </div>
