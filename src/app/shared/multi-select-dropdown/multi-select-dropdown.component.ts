@@ -1,13 +1,23 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 @Component({
   selector: 'app-multi-select-dropdown',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './multi-select-dropdown.component.html',
   styleUrls: ['./multi-select-dropdown.component.scss'],
 })
-export class MultiSelectDropdownComponent {
+export class MultiSelectDropdownComponent implements OnChanges {
   @Input() list: any[];
   @Input() dropdownName: any;
+  @Input() listLength = true;
 
   @Output() shareCheckedList = new EventEmitter();
   @Output() shareIndividualCheckedList = new EventEmitter();
@@ -16,15 +26,23 @@ export class MultiSelectDropdownComponent {
   currentSelected: {};
   checkedListLength: any;
   showDropDown: boolean;
+  isClear: boolean;
 
   constructor() {
     this.checkedList = [];
     this.dropdownName = '';
     this.showDropDown = false;
   }
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.listLength) {
+      this.isClear = changes.listLength.currentValue;
+      this.checkedListLength = 0;
+      this.checkedList = [];
+      this.isClear = true;
+    }
+  }
 
-  // ngOnInit() {
-  // }
+  // selected value from dropdown
   getSelectedValue(status: boolean, value: string) {
     if (status) {
       this.checkedList.push(value);
@@ -34,7 +52,6 @@ export class MultiSelectDropdownComponent {
     }
 
     this.currentSelected = { checked: status, name: value };
-
     // share checked list
     this.shareCheckedlist();
 
