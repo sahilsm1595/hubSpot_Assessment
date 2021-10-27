@@ -6,29 +6,14 @@ import { AppComponent } from './app.component';
 import { Exercise2Component } from './exercise2/exercise2.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MainService } from './Services/main.service';
-import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { FormsModule } from '@angular/forms';
-// import { MultiSelectDropdownComponent } from './shared/multi-select-dropdown/multi-select-dropdown.component';
 import { Exercise1Component } from './exercise1/exercise1.component';
 import { SharedModule } from './shared/shared.module';
 
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    Exercise2Component,
-    // MultiSelectDropdownComponent,
-    Exercise1Component
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    AngularMultiSelectModule,
-    FormsModule,
-    SharedModule
-  ],
+  declarations: [AppComponent, Exercise2Component, Exercise1Component],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, SharedModule],
   providers: [MainService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

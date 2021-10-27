@@ -60,7 +60,7 @@
       <ng-container *ngIf="filteredMovieList.length > 0">
         <div *ngFor="let dataitem of filteredMovieList | sortname" class="movie-content">
           <div>
-            <img draggable="false" src="{{ dataitem.poster }}" height="350px" />
+            <img clas="movie-img" draggable="false" src="{{ dataitem.poster }}" height="350px" />
           </div>
           <div class="movie-title">
             {{ dataitem.title }}
